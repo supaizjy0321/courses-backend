@@ -4,7 +4,7 @@ const cors = require('cors');
 const { Pool } = require('pg');
 
 const app = express();
-const port = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
@@ -18,7 +18,7 @@ const pool = new Pool({
     password: 'Test1234!',
     port: 5432,
     ssl: {
-        rejectUnauthorized: true
+        rejectUnauthorized: false
     }
 });
 
@@ -247,7 +247,12 @@ app.delete('/assignments/:id', async (req, res) => {
     }
 });
 
+// Add a simple root route for health checks
+app.get('/', (req, res) => {
+    res.send('Courses API is running');
+});
+
 // === Start Server ===
-app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
