@@ -1,0 +1,14 @@
+   # Node
+   node_modules/
+   npm-debug.log
+   
+   # Environment
+   .env
+   .env.local
+   
+   # Build files
+   /build
+   /dist
+   
+   # Misc
+   .DS_Store
